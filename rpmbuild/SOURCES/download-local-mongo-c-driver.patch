@@ -1,0 +1,24 @@
+diff -Nru '--exclude=.git' MaxScale-21.06.18.org/cmake/BuildMongoCDriver.cmake MaxScale-21.06.18/cmake/BuildMongoCDriver.cmake
+--- MaxScale-21.06.18.org/cmake/BuildMongoCDriver.cmake	2025-03-05 03:19:08.598979662 +0700
++++ MaxScale-21.06.18/cmake/BuildMongoCDriver.cmake	2025-03-05 04:05:42.620165256 +0700
+@@ -16,17 +16,16 @@
+ 
+ message(STATUS "Using mongo-c-driver version ${MONGO_C_DRIVER_VERSION}")
+ 
+-set(MONGO_C_DRIVER_URL "https://github.com/mongodb/mongo-c-driver/releases/download/${MONGO_C_DRIVER_VERSION}/mongo-c-driver-${MONGO_C_DRIVER_VERSION}.tar.gz"
+-  CACHE STRING "mongo-c-driver sources")
++# set(MONGO_C_DRIVER_URL "https://github.com/mongodb/mongo-c-driver/releases/download/${MONGO_C_DRIVER_VERSION}/mongo-c-driver-${MONGO_C_DRIVER_VERSION}.tar.gz"
++#   CACHE STRING "mongo-c-driver sources")
+ 
+-set(MONGO_C_DRIVER "${CMAKE_BINARY_DIR}/mongo-c-driver")
++set(MONGO_C_DRIVER "${CMAKE_SOURCE_DIR}/mongo-c-driver")
+ 
+ set(MONGO_C_DRIVER_SOURCE  "${MONGO_C_DRIVER}/src")
+ set(MONGO_C_DRIVER_BINARY  "${MONGO_C_DRIVER}/build")
+ set(MONGO_C_DRIVER_INSTALL "${MONGO_C_DRIVER}/install")
+ 
+ ExternalProject_Add(mongo-c-driver
+-  URL ${MONGO_C_DRIVER_URL}
+   SOURCE_DIR ${MONGO_C_DRIVER_SOURCE}
+   CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${MONGO_C_DRIVER_INSTALL}  -DCMAKE_C_FLAGS=-fPIC -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF -DENABLE_TESTS=N -DENABLE_EXAMPLES=N -DENABLE_ZSTD=OFF -DENABLE_SNAPPY=OFF
+   BINARY_DIR ${MONGO_C_DRIVER_BINARY}

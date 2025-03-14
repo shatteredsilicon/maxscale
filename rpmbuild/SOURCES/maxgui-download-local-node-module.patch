@@ -1,0 +1,13 @@
+diff -Nru '--exclude=.git' MaxScale-21.06.18.org/maxgui/CMakeLists.txt MaxScale-21.06.18/maxgui/CMakeLists.txt
+--- MaxScale-21.06.18.org/maxgui/CMakeLists.txt	2025-03-05 03:19:08.606979709 +0700
++++ MaxScale-21.06.18/maxgui/CMakeLists.txt	2025-03-05 05:11:53.116854937 +0700
+@@ -5,7 +5,8 @@
+     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/node_modules
+     DEPENDS maxgui_copy_sources package.json package-lock.json
+-    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/npm_install.sh ${CMAKE_SOURCE_DIR}
++    # COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/npm_install.sh ${CMAKE_SOURCE_DIR}
++    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/node_modules ${CMAKE_CURRENT_BINARY_DIR}/node_modules
+     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+   add_custom_target(maxgui_node_modules DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/node_modules)
+   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/gui

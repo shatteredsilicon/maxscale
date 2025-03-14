@@ -1,0 +1,33 @@
+diff -Nru '--exclude=.git' mongo-cxx-driver-r3.7.2.org/src/bsoncxx/third_party/CMakeLists.txt mongo-cxx-driver-r3.7.2/src/bsoncxx/third_party/CMakeLists.txt
+--- mongo-cxx-driver-r3.7.2.org/src/bsoncxx/third_party/CMakeLists.txt	2025-03-05 04:37:03.245400467 +0700
++++ mongo-cxx-driver-r3.7.2/src/bsoncxx/third_party/CMakeLists.txt	2025-03-05 04:37:40.279325773 +0700
+@@ -16,17 +16,23 @@
+ 
+ if (BSONCXX_POLY_USE_MNMLSTC AND NOT BSONCXX_POLY_USE_SYSTEM_MNMLSTC)
+ 
++    set(MNMLSTC_CORE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/mnmlstc_core")
++
+     ExternalProject_Add(
+         EP_mnmlstc_core
+-        GIT_REPOSITORY https://github.com/mnmlstc/core
+-        GIT_TAG v1.1.0
+-        LOG_DOWNLOAD ON
++        SOURCE_DIR ${MNMLSTC_CORE_SOURCE_DIR}
++        LOG_DOWNLOAD OFF
+         LOG_CONFIGURE ON
+         LOG_BUILD ON
+         LOG_INSTALL ON
+-        LOG_UPDATE ON
+-        UPDATE_COMMAND ""
+-        CMAKE_ARGS -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_TESTING=Off -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}/${BSONCXX_HEADER_INSTALL_DIR}/bsoncxx/third_party/mnmlstc -DINCLUDE_INSTALL_DIR=.
++        LOG_UPDATE OFF
++        CMAKE_ARGS 
++        -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} 
++        -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER} 
++        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} 
++        -DBUILD_TESTING=Off 
++        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}/${BSONCXX_HEADER_INSTALL_DIR}/bsoncxx/third_party/mnmlstc 
++        -DINCLUDE_INSTALL_DIR=.
+     )
+ 
+     ExternalProject_Add_Step(

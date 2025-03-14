@@ -1,0 +1,34 @@
+diff -Nru '--exclude=.git' MaxScale-21.06.18.org/cmake/BuildHiredis.cmake MaxScale-21.06.18/cmake/BuildHiredis.cmake
+--- MaxScale-21.06.18.org/cmake/BuildHiredis.cmake	2025-03-05 03:19:08.598979662 +0700
++++ MaxScale-21.06.18/cmake/BuildHiredis.cmake	2025-03-05 03:37:52.245835113 +0700
+@@ -8,16 +8,13 @@
+ # HIREDIS_LIBRARIES        - The libraries to link, same as HIREDIS_STATIC_LIBRARIES
+ #
+ 
+-set(HIREDIS_REPO "https://github.com/redis/hiredis.git" CACHE STRING "Hiredis Git repository")
+-set(HIREDIS_TAG "v1.0.2" CACHE STRING "Hiredis Git tag")
++# set(HIREDIS_REPO "https://github.com/redis/hiredis.git" CACHE STRING "Hiredis Git repository")
++# set(HIREDIS_TAG "v1.0.2" CACHE STRING "Hiredis Git tag")
+ 
+-message(STATUS "Building hiredis version ${HIREDIS_VERSION}")
++message(STATUS "Building hiredis version 1.0.2")
+ 
+ ExternalProject_add(hiredis
+-  GIT_REPOSITORY ${HIREDIS_REPO}
+-  GIT_TAG ${HIREDIS_TAG}
+-  GIT_SHALLOW TRUE
+-  SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/hiredis
++  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hiredis
+   CONFIGURE_COMMAND ""
+   BUILD_IN_SOURCE 1
+   BUILD_COMMAND make
+@@ -35,7 +32,7 @@
+   LOG_INSTALL 1
+   )
+ 
+-set(HIREDIS_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/hiredis CACHE INTERNAL "")
+-set(HIREDIS_STATIC_LIBRARIES ${CMAKE_CURRENT_BINARY_DIR}/hiredis/libhiredis.a)
++set(HIREDIS_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hiredis CACHE INTERNAL "")
++set(HIREDIS_STATIC_LIBRARIES ${CMAKE_CURRENT_SOURCE_DIR}/hiredis/libhiredis.a)
+ set(HIREDIS_LIBRARIES ${HIREDIS_STATIC_LIBRARIES})
+ set(HIREDIS_FOUND TRUE)

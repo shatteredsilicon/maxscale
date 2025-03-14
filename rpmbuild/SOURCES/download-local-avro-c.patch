@@ -1,0 +1,15 @@
+diff -Nru '--exclude=.git' MaxScale-21.06.18.org/cmake/BuildAvro.cmake MaxScale-21.06.18/cmake/BuildAvro.cmake
+--- MaxScale-21.06.18.org/cmake/BuildAvro.cmake	2025-03-05 03:19:08.598979662 +0700
++++ MaxScale-21.06.18/cmake/BuildAvro.cmake	2025-03-05 03:24:23.386563126 +0700
+@@ -1,9 +1,8 @@
+ # Builds Avro C library from source.
+-set(AVRO_C_URL "https://github.com/apache/avro/archive/release-1.10.0.tar.gz" CACHE STRING "Avro-C sources")
++# set(AVRO_C_URL "https://github.com/apache/avro/archive/release-1.10.0.tar.gz" CACHE STRING "Avro-C sources")
+ 
+ ExternalProject_Add(avro-c
+-  URL ${AVRO_C_URL}
+-  SOURCE_DIR ${CMAKE_BINARY_DIR}/avro-c/
++  SOURCE_DIR ${CMAKE_SOURCE_DIR}/avro-c/
+   PATCH_COMMAND sed -i -e "s/find_package(Snappy)//" -e "s/add_subdirectory(examples)//" -e "s/add_subdirectory(tests)//" lang/c/CMakeLists.txt
+   SOURCE_SUBDIR lang/c/
+   CMAKE_ARGS

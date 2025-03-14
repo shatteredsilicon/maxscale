@@ -1,0 +1,24 @@
+diff -Nru '--exclude=.git' MaxScale-21.06.18.org/cmake/BuildLibMemcached.cmake MaxScale-21.06.18/cmake/BuildLibMemcached.cmake
+--- MaxScale-21.06.18.org/cmake/BuildLibMemcached.cmake	2025-03-05 03:19:08.598979662 +0700
++++ MaxScale-21.06.18/cmake/BuildLibMemcached.cmake	2025-03-05 03:41:57.378314979 +0700
+@@ -15,17 +15,16 @@
+ 
+ message(STATUS "Building libmemcached version ${LIBMEMCACHED_VERSION}")
+ 
+-set(LIBMEMCACHED_URL "https://launchpad.net/libmemcached/1.0/${LIBMEMCACHED_VERSION}/+download/libmemcached-${LIBMEMCACHED_VERSION}.tar.gz"
+-  CACHE STRING "libmemcached sources")
++# set(LIBMEMCACHED_URL "https://launchpad.net/libmemcached/1.0/${LIBMEMCACHED_VERSION}/+download/libmemcached-${LIBMEMCACHED_VERSION}.tar.gz"
++#   CACHE STRING "libmemcached sources")
+ 
+-set(LIBMEMCACHED_BASE "${CMAKE_BINARY_DIR}/libmemcached")
++set(LIBMEMCACHED_BASE "${CMAKE_SOURCE_DIR}/libmemcached")
+ 
+ set(LIBMEMCACHED_SOURCE "${LIBMEMCACHED_BASE}/src")
+ set(LIBMEMCACHED_BINARY "${LIBMEMCACHED_BASE}/build")
+ set(LIBMEMCACHED_INSTALL "${LIBMEMCACHED_BASE}/install")
+ 
+ ExternalProject_Add(libmemcached
+-  URL ${LIBMEMCACHED_URL}
+   SOURCE_DIR ${LIBMEMCACHED_SOURCE}
+   CONFIGURE_COMMAND ${LIBMEMCACHED_SOURCE}/configure --prefix=${LIBMEMCACHED_INSTALL} --enable-shared --with-pic --libdir=${LIBMEMCACHED_INSTALL}/lib/
+   PATCH_COMMAND sed -i "s/opt_servers == false/opt_servers == 0/" ${LIBMEMCACHED_SOURCE}/clients/memflush.cc
