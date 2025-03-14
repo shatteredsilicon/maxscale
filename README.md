@@ -11,3 +11,13 @@ config_opts['module_setup_commands'] = [
     ('install', 'nodejs:22/common'),
 ]
 ```
+Normally this would be based on something like a copy of alma+epel-8-$arch.cfg with the above payload added in an additional template file included from that mock config.
+
+
+Build instructions:
+```
+cd rpmbuild/SOURCES
+./prep-maxscale.sh
+cd ../SPECS
+rpmbuild -ba maxscale.spec
+```
