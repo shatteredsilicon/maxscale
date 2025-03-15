@@ -24,7 +24,7 @@ Patch3:        download-local-mongo-c-driver.patch
 Patch4:        download-local-mongo-cxx-driver.patch
 Patch5:        maxctl-download-local-node-module.patch
 Patch6:        maxgui-download-local-node-module.patch
-Patch7:        build-maxgui-with-nodejs18+.patch
+Patch7:        build-maxgui-with-openssl3+.patch
 BuildRequires: cmake >= 3.16
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -148,6 +148,8 @@ TIMEOUT=30
 INTERVAL=1
 ELAPSED=0
 
+# When a Node.js version lower than 22 is already installed on the system, the `Requires: nodejs >= 22` directive
+# does not force an upgrade to Node.js 22. Therefore, we need to manually upgrade to Node.js 22 using the dnf tool.
 installed_node_version=$(node -v 2>/dev/null | cut -d. -f1 | tr -d 'v' || echo "0")
 if [ "$installed_node_version" -gt "1" ] && [ "$installed_node_version" -lt "$REQUIRED_NODE_VERSION" ]; then
     echo "  Installing Node.js 22 ..."
