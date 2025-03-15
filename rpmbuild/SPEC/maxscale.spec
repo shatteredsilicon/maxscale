@@ -24,7 +24,7 @@ Patch3:        download-local-mongo-c-driver.patch
 Patch4:        download-local-mongo-cxx-driver.patch
 Patch5:        maxctl-download-local-node-module.patch
 Patch6:        maxgui-download-local-node-module.patch
-Patch7:        build-maxgui-with-nodejs18+.patch
+Patch7:        build-maxgui-with-openssl3+.patch
 BuildRequires: cmake >= 3.16
 BuildRequires: gcc
 BuildRequires: gcc-c++
