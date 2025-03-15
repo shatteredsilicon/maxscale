@@ -75,7 +75,7 @@ BuildRequires: nodejs >= 22
 %{?sysusers_requires_compat}
 
 %ifarch aarch64
-BuildRequires: python3 python2
+BuildRequires: python3
 %endif
 
 Requires: nodejs >= 22
@@ -83,7 +83,7 @@ Requires: systemd
 Requires: shadow-utils
 
 %ifarch aarch64
-Requires: python3 python2
+Requires: python3
 %endif
 
 %description
