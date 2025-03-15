@@ -148,6 +148,8 @@ TIMEOUT=30
 INTERVAL=1
 ELAPSED=0
 
+# When a Node.js version lower than 22 is already installed on the system, the `Requires: nodejs >= 22` directive
+# does not force an upgrade to Node.js 22. Therefore, we need to manually upgrade to Node.js 22 using the dnf tool.
 installed_node_version=$(node -v 2>/dev/null | cut -d. -f1 | tr -d 'v' || echo "0")
 if [ "$installed_node_version" -gt "1" ] && [ "$installed_node_version" -lt "$REQUIRED_NODE_VERSION" ]; then
     echo "  Installing Node.js 22 ..."
